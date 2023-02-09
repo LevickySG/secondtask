@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d21ef848-9b51-44a5-a774-3dcf6b57a71f" name="Changes" comment="3rd task&#10;testing branch mechanic on git">
+    <list default="true" id="d21ef848-9b51-44a5-a774-3dcf6b57a71f" name="Changes" comment="3rd task&#10;Logging and checking numbers of tasks in *project name*">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hooks/WebHooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hooks/WebHooks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/RunTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RunTest.java" afterDir="false" />
@@ -126,12 +126,20 @@
       <option name="project" value="LOCAL" />
       <updated>1675886440490</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3rd task&#10;Logging and checking numbers of tasks in *project name*">
+      <created>1675901172427</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675901172427</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2nd task&#10;Test for string comparison" />
     <MESSAGE value="3rd task&#10;testing branch mechanic on git" />
-    <option name="LAST_COMMIT_MESSAGE" value="3rd task&#10;testing branch mechanic on git" />
+    <MESSAGE value="3rd task&#10;Logging and checking numbers of tasks in *project name*" />
+    <option name="LAST_COMMIT_MESSAGE" value="3rd task&#10;Logging and checking numbers of tasks in *project name*" />
   </component>
 </project>
