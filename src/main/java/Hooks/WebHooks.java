@@ -30,25 +30,33 @@ public class WebHooks {
     }
     @Step("выбор кнопки из верхнего тулбара")
     public static void ChooseTopMenuButton(String MenuButton){
-        $(By.xpath("//a[contains(text(),\"" + MenuButton +"\")]")).click();
+        SelenideElement button = $(By.xpath("//a[contains(text(),\"" + MenuButton +"\")]"));
+        button.shouldBe(visible,Duration.ofSeconds(5)).click();
     }
     @Step("открытие страницы с проектом")
     public static void chooseProject(String ProjName){
         ChooseTopMenuButton("Проекты");
-        $(By.xpath("//a[contains(text(),\"Просмотр всех проектов\")]")).click();
-        $(By.xpath("//a[contains(text(),\"" + ProjName + "\")]")).click();
+        SelenideElement AllProj = $(By.xpath("//a[contains(text(),\"Просмотр всех проектов\")]"))
+                .as("Просмотр всех проект");
+        AllProj.shouldBe(visible,Duration.ofSeconds(5)).click();
+        SelenideElement ChosenProject = $(By.xpath("//a[contains(text(),\"" + ProjName + "\")]"))
+                .as(ProjName);
+        ChosenProject.shouldBe(visible,Duration.ofSeconds(5)).click();
     }
     @Step("проверка количества заданий")
     public static String CheckTasks(String ProjName){
         chooseProject(ProjName);
-        $(By.xpath("//span[contains(text(),\"Задачи\")]//parent::a")).click();
+        SelenideElement leftButtonTasks = $(By.xpath("//span[contains(text(),\"Задачи\")]//parent::a"));
+        leftButtonTasks.shouldBe(visible,Duration.ofSeconds(5)).click();
         return $(By.xpath("//span[contains(text(),\"1 из\")]")).getText().substring(5);
     }
     @Step("переход на страницу задачи")
     public static void ChooseTasks(String TaskName){
         ChooseTopMenuButton("Задачи");
-        $(By.xpath("//a[contains(text(), \"Поиск задач\")]")).click();
-        $(By.xpath("//input[@placeholder=\"Содержит текст\"]")).setValue(TaskName).pressEnter();
+        SelenideElement TaskSearch = $(By.xpath("//a[contains(text(), \"Поиск задач\")]"));
+        TaskSearch.shouldBe(visible,Duration.ofSeconds(5)).click();
+        SelenideElement TextField = $(By.xpath("//input[@placeholder=\"Содержит текст\"]"));
+        TextField.setValue(TaskName).pressEnter();
     }
 
     public static String TaskStatus (String TaskName){//возвращает статус задачи
@@ -64,23 +72,29 @@ public class WebHooks {
     @Step("Создание задачи")
     public static void TaskCreate (String TaskTheme, String TaskDescription, String TaskEnv, String TaskVer){
         ChooseTopMenuButton("Создать");
-        $(By.xpath("//label[contains(text(),\"Тема\")]//following-sibling::input")).setValue(TaskTheme);
-        $(By.xpath("//div[@id=\"description-wiki-edit\"]//child::textarea"))
-                .shouldBe(visible,Duration.ofSeconds(10)).setValue(TaskDescription);
-        $(By.xpath("//div[@id=\"environment-wiki-edit\"]//child::textarea"))
-                .shouldBe(visible,Duration.ofSeconds(10)).setValue(TaskEnv);
-        $(By.xpath("//select[@id=\"fixVersions\"]//descendant::option[contains(text(),\""
-                +TaskVer+"\")]")).click();
-        $(By.xpath("//input[@value=\"Создать\"]")).click();
+        SelenideElement TaskThemeField = $(By.xpath
+                ("//label[contains(text(),\"Тема\")]//following-sibling::input")).as("поле ввода темы");
+        TaskThemeField.setValue(TaskTheme);
+        SelenideElement Description = $(By.xpath("//div[@id=\"description-wiki-edit\"]//child::textarea"))
+                .as("поле ввода описания");
+        Description.shouldBe(visible,Duration.ofSeconds(5)).setValue(TaskDescription);
+        SelenideElement Environment = $(By.xpath("//div[@id=\"environment-wiki-edit\"]//child::textarea"))
+                .as("поле ввода окружения");
+        Environment.shouldBe(visible,Duration.ofSeconds(5)).setValue(TaskEnv);
+        SelenideElement Versions = $(By.xpath("//select[@id=\"fixVersions\"]" +
+                "//descendant::option[contains(text(),\"" +TaskVer+"\")]"));
+        Versions.shouldBe(visible,Duration.ofSeconds(5)).click();
+        SelenideElement CreateButton = $(By.xpath("//input[@value=\"Создать\"]")).as("Создать");
+        CreateButton.click();
     }
     @Step("Закрытие задачи")
     public static void TaskClose(String TaskName){//закрытие задачи
         ChooseTasks(TaskName);
-        $(By.xpath("//span[contains(text(),\"Бизнес-процесс\")]//parent::a"))
-                .shouldBe(visible,Duration.ofSeconds(20)).click();
-        $(By.xpath("//span[contains(text(),\"Выполнено\")]"))
-                .shouldBe(visible,Duration.ofSeconds(20)).click();
-        $(By.xpath("//span[contains(text(),\"Выполнено\")]")).shouldBe(visible,Duration.ofSeconds(20));
+        SelenideElement BusyButt = $(By.xpath("//span[contains(text(),\"Бизнес-процесс\")]//parent::a"));
+        BusyButt.shouldBe(visible,Duration.ofSeconds(20)).click();
+        SelenideElement DoneButt = $(By.xpath("//span[contains(text(),\"Выполнено\")]"));
+        DoneButt.shouldBe(visible,Duration.ofSeconds(20)).click();
+        sleep(1000);
         //посленяя стрчока выглядит как костыль, но без неё программе не хватает времени, чтобы измениня ушли в Жиру
     }
 }

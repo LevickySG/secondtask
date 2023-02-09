@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d21ef848-9b51-44a5-a774-3dcf6b57a71f" name="Changes" comment="3rd task&#10;Logging and checking numbers of tasks in *project name*">
+    <list default="true" id="d21ef848-9b51-44a5-a774-3dcf6b57a71f" name="Changes" comment="3rd task&#10;Checking numbers of tasks&#10;Open and close bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Hooks/WebHooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Hooks/WebHooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RunTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RunTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +51,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.RunTest.test1">
+  <component name="RunManager" selected="JUnit.RunTest.test2">
     <configuration name="RunTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="YandexTest" />
       <option name="PACKAGE_NAME" value="" />
@@ -97,8 +96,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RunTest.test1" />
         <item itemvalue="JUnit.RunTest.test2" />
+        <item itemvalue="JUnit.RunTest.test1" />
         <item itemvalue="JUnit.RunTest" />
       </list>
     </recent_temporary>
@@ -133,13 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675901172427</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="3rd task&#10;Checking numbers of tasks&#10;Open and close bug">
+      <created>1675953232818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675953232818</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2nd task&#10;Test for string comparison" />
     <MESSAGE value="3rd task&#10;testing branch mechanic on git" />
     <MESSAGE value="3rd task&#10;Logging and checking numbers of tasks in *project name*" />
-    <option name="LAST_COMMIT_MESSAGE" value="3rd task&#10;Logging and checking numbers of tasks in *project name*" />
+    <MESSAGE value="3rd task&#10;Checking numbers of tasks&#10;Open and close bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="3rd task&#10;Checking numbers of tasks&#10;Open and close bug" />
   </component>
 </project>
