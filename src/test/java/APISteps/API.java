@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class API {
@@ -26,7 +25,5 @@ public class API {
                     .extract()
                     .response();
             System.out.println(postJSON.getBody().asString());
-            String a = new JSONObject(postJSON.getBody().asString()).getJSONArray("Rhymes").toString();
-            System.out.println(a);
         }
     }
