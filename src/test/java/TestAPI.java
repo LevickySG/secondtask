@@ -1,6 +1,6 @@
 import APISteps.RickAPI;
 import org.junit.Test;
-
+import APISteps.ReqAPI;
 
 public class TestAPI {
     @Test
@@ -10,5 +10,9 @@ public class TestAPI {
         RickAPI.getLastID();
         RickAPI.getCharacter();
         RickAPI.AssertEq();
+    }
+    @Test
+    public void testReqAPI(){
+        ReqAPI.smh();
     }
 }
