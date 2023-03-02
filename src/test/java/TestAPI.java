@@ -1,17 +1,14 @@
-import APISteps.API;
+import APISteps.RickAPI;
 import org.junit.Test;
 
-import static APISteps.API.*;
 
 public class TestAPI {
     @Test
-    public void test1(){
-        charID = "2";
-        API.getCharacter("2");
-        API.getLastEpisode("2");
-        API.getCharFromEpisode(LastEpisodeId);
-        API.getCharSpecies(LastCharacterId);
-        API.getCharLocation(LastCharacterId);
-        API.dataEqual("2",LastCharacterId);
+    public void testRickAPI(){
+        RickAPI.charID = "2";
+        RickAPI.getMorty();
+        RickAPI.getLastID();
+        RickAPI.getCharacter();
+        RickAPI.AssertEq();
     }
 }
