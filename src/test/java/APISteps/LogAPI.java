@@ -1,8 +1,11 @@
 package APISteps;
 
+import io.qameta.allure.Step;
+
 import static io.restassured.RestAssured.given;
 
 public class LogAPI {
+    @Step
     public static void authen(){
         given().auth()
                 .preemptive()

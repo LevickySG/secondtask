@@ -1,4 +1,5 @@
 package APISteps;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
@@ -9,6 +10,7 @@ import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 
 public class ReqAPI {
+        @Step
         public static void sendBody() throws IOException {
             JSONObject body = new JSONObject(new String(Files.readAllBytes(Paths.get("src/test/resources/JSON/name.json"))));
             body.put("Rhymes", new String[]{"Topato", "Pomato"});

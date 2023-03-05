@@ -1,4 +1,5 @@
 package APISteps;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ public class RickAPI {
     public static String MortySpec;
     public static String CharLoc;
     public static String CharSpec;
-
+    @Step
     public static void getMorty() {
         Response gettingChar = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -35,7 +36,7 @@ public class RickAPI {
         System.out.println(charName + " location:" + MortyLoc);
 
     }
-
+    @Step
     public static void getLastID() {
         Response getCharFromEpisode = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -49,7 +50,7 @@ public class RickAPI {
                 .getJSONArray("characters").get(lastcharId).toString().replaceAll("[^0-9]", "");
         System.out.println("Last episode last character:");
     }
-
+    @Step
     public static void getCharacter() {
         Response gettingChar = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -65,7 +66,7 @@ public class RickAPI {
         CharLoc = new JSONObject(gettingChar.getBody().asString()).getJSONObject("location").get("name").toString();
         System.out.println(charName + " location:" + CharLoc);
     }
-
+    @Step
     public static void AssertEq() {
         Assertions.assertAll(
                 () -> assertEquals("Another Locations",MortyLoc,CharLoc),
