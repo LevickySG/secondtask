@@ -1,5 +1,8 @@
 package APISteps;
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
@@ -15,9 +18,10 @@ public class RickAPI {
     public static String MortySpec;
     public static String CharLoc;
     public static String CharSpec;
-    @Step
+    @Step("получение данных о первом персонаже")
     public static void getMorty() {
-        Response gettingChar = given()
+        Response gettingChar = given().filter(new AllureRestAssured()).filter(new RequestLoggingFilter())
+                .filter(new ResponseLoggingFilter())
                 .baseUri("https://rickandmortyapi.com/api")
                 .when()
                 .get("/character/" + charID)
@@ -36,7 +40,7 @@ public class RickAPI {
         System.out.println(charName + " location:" + MortyLoc);
 
     }
-    @Step
+    @Step("айди последнего персонажа в последнем эпизоде")
     public static void getLastID() {
         Response getCharFromEpisode = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -50,7 +54,7 @@ public class RickAPI {
                 .getJSONArray("characters").get(lastcharId).toString().replaceAll("[^0-9]", "");
         System.out.println("Last episode last character:");
     }
-    @Step
+    @Step("получение информации о последнем персонаже")
     public static void getCharacter() {
         Response gettingChar = given()
                 .baseUri("https://rickandmortyapi.com/api")
@@ -66,7 +70,7 @@ public class RickAPI {
         CharLoc = new JSONObject(gettingChar.getBody().asString()).getJSONObject("location").get("name").toString();
         System.out.println(charName + " location:" + CharLoc);
     }
-    @Step
+    @Step("сравнение данных о персонажах")
     public static void AssertEq() {
         Assertions.assertAll(
                 () -> assertEquals("Another Locations",MortyLoc,CharLoc),

@@ -1,20 +1,15 @@
 import APISteps.LogAPI;
 import APISteps.RickAPI;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import hooks.ApiHooks;
-import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.BeforeClass;
+import io.qameta.allure.Epic;
+
 import org.junit.Test;
 import APISteps.ReqAPI;
 
 import java.io.IOException;
 
 public class TestAPI extends ApiHooks {
-    @BeforeClass
-    public static void listenerStart(){
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                .savePageSource(true).screenshots(true));
-    }
+    @Epic(value="RickAPI")
     @Test
     public void testRickAPI(){
         RickAPI.charID = "2";
@@ -23,11 +18,13 @@ public class TestAPI extends ApiHooks {
         RickAPI.getCharacter();
         RickAPI.AssertEq();
     }
+    @Epic(value="reqAPI")
     @Test
     public void testReqAPI() throws IOException {
         ReqAPI.sendBody();
     }
 
+    @Epic(value="JiraAPI")
     @Test
     public void JiraLog(){
         LogAPI.authen();
