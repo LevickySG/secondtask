@@ -4,14 +4,20 @@ import JiraElements.Creation;
 import JiraElements.LoginPage;
 import JiraElements.Projects;
 import JiraElements.Tasks;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.Тогда;
+
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import static JiraElements.ToolBar.ChooseTopMenuButton;
@@ -19,7 +25,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class JiraSteps{
+
+
+public class JiraSteps {
+
     public static String TaskName;
     public static String login;
     public static String pass;
@@ -57,7 +66,7 @@ public class JiraSteps{
         Selenide.closeWebDriver();
     }
     @Затем("создание задачи и закрытие задачи")
-    public void созданиеЗадачиИЗакрытиеЗадачи() {
+    public void созданиеЗадачиИЗакрытиеЗадачи() throws IOException {
         TaskCreate();
         Close();
         Selenide.closeWebDriver();
@@ -68,13 +77,25 @@ public class JiraSteps{
         Projects.AllProj.shouldBe(visible, Duration.ofSeconds(5)).click();
         Projects.ChosenProject(ProjName).shouldBe(visible,Duration.ofSeconds(5)).click();
     }
+    @Attachment
+    public static byte[] StepScreenshot (String ImgName) throws IOException{
+        String AfterStep = screenshot(ImgName);
+        return Files.readAllBytes(Paths.get(AfterStep.substring(6)));
+    }
+
     @Step("Создание задачи")
-    public static void TaskCreate (){
+    public static void TaskCreate () throws IOException {
+        Configuration.reportsFolder = "target/allure-results";
         Creation.CreateButton.shouldBe(visible,Duration.ofSeconds(5)).click();
+        StepScreenshot("Нажатие_кнопки");
         Creation.TaskThemeField.setValue(TaskName);
+        StepScreenshot("ввод_имени_задачи");
         Creation.Description.shouldBe(visible, Duration.ofSeconds(5)).setValue(TaskDescription);
+        StepScreenshot("ввод_описания");
         Creation.Environment.shouldBe(visible,Duration.ofSeconds(5)).setValue(TaskEnv);
+        StepScreenshot("ввод_окружения");
         Creation.Versions(TaskVer).shouldBe(visible,Duration.ofSeconds(5)).click();
+        StepScreenshot("ввод_Версии");
         Creation.CreateConfirm.shouldBe(visible,Duration.ofSeconds(5)).click();
     }
     @Step("проверка количества заданий")
@@ -100,14 +121,16 @@ public class JiraSteps{
         SelenideElement TextField = $x("//input[@placeholder=\"Содержит текст\"]");
         TextField.setValue(TaskName).pressEnter();
     }
-
+    @Step
     public static String Status (){//возвращает статус задачи
         ChooseTasks();
+        Configuration.reportsFolder = "target/allure-results";
         return (($(By.xpath("//span[@id='status-val']//child::span")).getText()));
     }
-
+    @Step
     public static String TaskVersion (){//возвращает версию задачи
         ChooseTasks();
+        Configuration.reportsFolder = "target/allure-results";
         return (($(By.xpath("//strong[@title='Исправить в версиях']" +
                 "//following-sibling::span//child::span//child::a")).getText()));
     }
