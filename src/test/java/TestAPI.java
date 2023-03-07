@@ -2,12 +2,12 @@ import APISteps.LogAPI;
 import APISteps.RickAPI;
 import hooks.ApiHooks;
 import io.qameta.allure.Epic;
-
-import org.junit.Test;
 import APISteps.ReqAPI;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.io.IOException;
-
+@DisplayName("Api tests")
 public class TestAPI extends ApiHooks {
     @Epic(value="RickAPI")
     @Test
