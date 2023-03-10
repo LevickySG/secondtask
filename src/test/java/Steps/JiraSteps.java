@@ -13,6 +13,7 @@ import io.cucumber.java.ru.Тогда;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -25,8 +26,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
-
-
+@Tag("TEST")
 public class JiraSteps {
 
     public static String TaskName;
